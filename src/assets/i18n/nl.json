@@ -1,0 +1,136 @@
+{
+  "NAVBAR": {
+    "NavTitle": "Domiciliëringen schuldeiser",
+    "LanguageModalTitle": "Kies uw taal:",
+    "LanguageModalCloseBtnName": "Sluiten"
+  },
+  "COMMON": {
+    "IsRequired": "is verplicht",
+    "InvalidEmail": "Ongeldig email adres"
+  },
+  "CDDENTRIES": {
+    "EmptyLabel": "Toevoegen of importeren",
+    "ExportButtonLabel": "Genereer",
+    "LoadButtonLabel": "Importeer",
+    "SaveButtonLabel": "Exporteer",
+    "DeleteButtonLabel": "Verwijder alles",
+    "DeleteThisLabel": "Deze selectie verwijderen?",
+    "DeleteAllLabel": "Deze lijst verwijderen?",
+    "YesLabel": "Ja",
+    "NoLabel": "Neen",
+    "SaveModalTitle": "Bewaren als:",
+    "LoadModalTitle": "Inladen",
+    "ExportModalTitle": "Maak XML Domiciliering(en)",
+    "ModalCloseBtnName": "Sluiten"
+  },
+  "CDDENTRY": {
+    "TabList": "Actieve Lijst",
+    "AmountLabel": "Bedrag",
+    "EndToEndLabel": "End-to-end (leeg of uniek!)",
+    "CommunicationLabel": "Communicatie",
+    "MandateIdLabel": "Mandaat id",
+    "MandateStartDateLabel": "Aanvangsdatum mandaat",
+    "ClientNameLabel": "Naam klant",
+    "IbanNumberLabel": "Iban nummer",
+    "SaveButtonLabel": "Bewaar",
+    "UpdateButtonLabel": "Bijwerken",
+    "ClearButtonLabel": "Schoon",
+    "LockButtonLabel": "Vergrendel",
+    "UnLockButtonLabel": "Ontgrendel",
+    "TabAddLabel": "Nieuw Toevoegen",
+    "TabEditLabel": "Wijzigen",
+    "TabMaintenanceLabel": "Onderhoud",
+    "EndToEndRequiredMessage": "EndToEnd bericht is verplicht",
+    "AmountRequiredMessage": "minstens 0.01, max 5000",
+    "AmountMinMaxMessage": "minstens 0.01 and maximum 5000",
+    "MandateIdRequiredMessage": "Mandaat Id is verplicht",
+    "MandateStartDateRequiredMessage": "Mandaat startdatum is verplicht",
+    "ClientNameRequiredMessage": "Naam klant is verplicht",
+    "IbanRequiredMessage": "Iban nummer is verplicht",
+    "IbanMinMaxMessage": "Nummer bestaat ofwel uit 12 of 16 tekens",
+    "CommunicationRequiredMessage": "Communicatie is verplicht"
+  },
+  "CDDSAVE": {
+    "GroupTypeLabel": "Groep Type",
+    "ClientLabel": "Klant",
+    "ListLabel": "Lijst",
+    "DescriptionLabel": "Omschrijving",
+    "DeleteAfterSavingCheckbox": "Actieve lijst leegmaken na bewaren",
+    "SaveButtonLabel": "Bewaren"
+  },
+  "CDDLOAD": {
+    "ChooseGroupLabel": "Kies Groep",
+    "ClientsLabel": "Klanten",
+    "ListsLabel": "Lijsten",
+    "GeneratedXMLLabel": "Gegenereerde XML",
+    "DescriptionLabel": "Omschrijving",
+    "ReplaceEntriesCheckbox": "Eerst actieve lijst leegmaken",
+    "DeleteAfterLoadingCheckbox": "Verwijder groepgegevens na inladen",
+    "LoadButtonLabel": "Inladen"
+  },
+  "CDDEXPORT": {
+    "DescriptionLabel": "App Naam",
+    "CreationDateLabel": "Aanmaakdatum",
+    "CDDAboutLabel": "DOM Omschrijving",
+    "MemoDateLabel": "Memo datum",
+    "ClearAfterExportCheckbox": "Template schoonvegen na aanmaak XML",
+    "GenerateXMLButtonLabel": "Genereer DOM XML",
+    "ClearButtonLabel": "Schoon"
+  },
+  "CDDSETTINGS": {
+    "NameLabel": "Naam schuldeiser",
+    "EnterpriseNumberLabel": "Ondernemingsnummer schuldeiser",
+    "CountryCodeLabel": "Landcode schuldeiser",
+    "StreetAndNumberLabel": "Straat en nummer schuldeiser",
+    "PostalCodeAndCityLabel": "Postcode en plaats schuldeiser",
+    "IbanLabel": "IBAN schuldeiser",
+    "BicLabel": "BIC schuldeiser",
+    "DomIdLabel": "Schuldeiser DOM Id",
+    "SaveButtonLabel": "Bewaren",
+    "ClearButtonLabel": "Schoon",
+    "ReadButtonLabel": "Inlezen"
+  },
+  "CDDTOOLS": {
+    "SettingsButtonLabel": "Instellingen Crediteur",
+    "ZipStorageButtonLabel": "Zip Data",
+    "ZipInspectButtonLabel": "ZIP controleren",
+    "StoreButtonLabel": "Bewaren!",
+    "ResetButtonLabel": "Schoon",
+    "SettingsModalTitle": "Instellingen Crediteur",
+    "ModalCloseBtnName": "Sluiten",
+    "ZipThisLabel": "ZIP Backup alle gegevens?",
+    "InspectThisLabel": "ZIP Backup controleren?",
+    "StoreThisLabel": "bestanden in storage bewaren?",
+    "YesLabel": "Ja",
+    "NoLabel": "Neen",
+    "OkLabel": "Ok"
+  },
+  "selectOptionsDemo": {
+    "A10C": [
+      {
+        "value": "0",
+        "viewvalue": "0:"
+      },
+      {
+        "value": "1",
+        "viewValue": "1: French"
+      },
+      {
+        "value": "2",
+        "viewValue": "2: Dutch"
+      },
+      {
+        "value": "3",
+        "viewValue": "3: German"
+      },
+      {
+        "value": "4",
+        "viewValue": "4: English"
+      },
+      {
+        "value": "9",
+        "viewValue": "9: Other"
+      }
+    ]
+  }
+}

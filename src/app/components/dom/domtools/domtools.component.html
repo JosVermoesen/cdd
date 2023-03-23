@@ -1,0 +1,74 @@
+<div class="card card-body mb-3">
+  <div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary mr-1"
+        (click)="openModalSettings()">{{ 'CDDTOOLS.SettingsButtonLabel' | translate }}</button>
+      <button type="button" class="btn btn-success mr-1"
+        (click)="questionYesNo(templatezipthis)">{{ 'CDDTOOLS.ZipStorageButtonLabel' | translate }}</button>
+      <button type="button" class="btn btn-danger" [disabled]="!fileIsZip"
+        (click)="questionYesNo(templateinspectthis)">{{ 'CDDTOOLS.ZipInspectButtonLabel' | translate }}</button>
+    </div>
+
+    <div class="input-group">
+      <div class="custom-file">
+        <input type="file" multiple class="custom-file-input" id="inputGroupFile04"
+          aria-describedby="inputGroupFileAddon04" (change)="fileChanged($event)">
+        <label class="custom-file-label" for="inputGroupFile04">{{ selectedLabel }}</label>
+      </div>
+
+      <div *ngIf="fileIsJson" class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
+          (click)="questionYesNo(templatestorethis)">{{ 'CDDTOOLS.StoreButtonLabel' | translate }}</button>
+        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
+          (click)="onReset()">{{ 'CDDTOOLS.ResetButtonLabel' | translate }}</button>
+      </div>
+
+    </div>
+
+    <div *ngIf="fileNameArray.length">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect02">View</label>
+        </div>
+        <select class="custom-select" (change)="onChangeFileArray($event.target.value)" id="inputGroupSelect02">
+          <option *ngFor="let filename of fileNameArray; let i = index" selected=[0] [value]=[i]>{{filename}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="fileIsJson">
+    <pre class="card card-block card-header">{{ contentJsonArray[selectedFile] | json }}</pre>
+  </div>
+</div>
+
+<ng-template #templatezipthis>
+  <div class="modal-body text-center">
+    <p>{{ 'CDDTOOLS.ZipThisLabel' | translate }}</p>
+    <button type="button" class="btn btn-default"
+      (click)="onBackup(true)">{{ 'CDDTOOLS.YesLabel' | translate }}</button>
+    <button type="button" class="btn btn-primary"
+      (click)="onBackup(false)">{{ 'CDDTOOLS.NoLabel' | translate }}</button>
+  </div>
+</ng-template>
+
+<ng-template #templateinspectthis>
+  <div class="modal-body text-center">
+    <p>{{ 'CDDTOOLS.InspectThisLabel' | translate }}</p>
+    <button type="button" class="btn btn-default"
+      (click)="onZipInspect(true)">{{ 'CDDTOOLS.YesLabel' | translate }}</button>
+    <button type="button" class="btn btn-primary"
+      (click)="onZipInspect(false)">{{ 'CDDTOOLS.NoLabel' | translate }}</button>
+  </div>
+</ng-template>
+
+<ng-template #templatestorethis>
+  <div class="modal-body text-center">
+    <p>{{ contentJsonArray.length }} {{ 'CDDTOOLS.StoreThisLabel' | translate }}</p>
+    <button type="button" class="btn btn-default"
+      (click)="onStorageStore(true)">{{ 'CDDTOOLS.YesLabel' | translate }}</button>
+    <button type="button" class="btn btn-primary"
+      (click)="onStorageStore(false)">{{ 'CDDTOOLS.NoLabel' | translate }}</button>
+  </div>
+</ng-template>

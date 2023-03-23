@@ -1,0 +1,145 @@
+<div class="card card-body mb-3">
+  <div>
+    <tabset #staticTabs>
+      <tab heading="{{ 'CDDENTRY.TabList' | translate }}">
+        <app-domentries></app-domentries>
+      </tab
+      >
+      <!-- <input type="button">
+      <input type="checkbox">
+      <input type="color">
+      <input type="date">
+      <input type="datetime-local">
+      <input type="email">
+      <input type="file">
+      <input type="hidden">
+      <input type="image">
+      <input type="month">
+      <input type="number">
+      <input type="password">
+      <input type="radio">
+      <input type="range">
+      <input type="reset">
+      <input type="search">
+      <input type="submit">
+      <input type="tel">
+      <input type="text">
+      <input type="time">
+      <input type="url">
+      <input type="week"> -->
+      <tab heading="{{ tabAddOrEdit }}">
+        <form [formGroup]="domEntryForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <input formControlName="id" hidden>
+
+            <app-text-input
+              formControlName="amount"
+              type="number"
+              label="{{ 'CDDENTRY.AmountLabel' | translate }}"
+              warningMessage="{{ 'CDDENTRY.AmountMinMaxMessage' | translate }}"
+            ></app-text-input>
+
+            <app-text-input
+              formControlName="communication"
+              label="{{ 'CDDENTRY.CommunicationLabel' | translate }}"
+              warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+            ></app-text-input>
+
+            <div *ngIf="!locked">
+              <app-text-input
+                formControlName="mandateId"
+                label="{{ 'CDDENTRY.MandateIdLabel' | translate }}"
+                warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+              ></app-text-input>
+
+              <input class="form-control mt-1" #datepickerYMD="bsDatepicker" bsDatepicker
+                formControlName="mandateStartDate" placeholder="{{ 'CDDENTRY.MandateStartDateLabel' | translate }}"
+                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-default' }">
+
+              <app-text-input
+                formControlName="clientName"
+                label="{{ 'CDDENTRY.ClientNameLabel' | translate }}"
+                warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+              ></app-text-input>
+
+              <app-text-input
+                formControlName="clientIban"
+                label="{{ 'CDDENTRY.IbanNumberLabel' | translate }}"
+                warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+              ></app-text-input>
+            </div>
+
+            <div *ngIf="locked">
+              <input readonly type="text" class="form-control mt-1" formControlName="mandateId">
+              <input readonly class="form-control mt-1" formControlName="mandateStartDate">
+              <input readonly type="text" class="form-control mt-1" formControlName="clientName">
+              <input readonly type="text" class="form-control mt-1" formControlName="clientIban">
+            </div>
+            <input readonly type="text" class="form-control mt-1 text-primary" formControlName="endToEndReference"
+              placeholder="{{ 'CDDENTRY.EndToEndLabel' | translate }}">
+          </div>
+
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary mr-1" [disabled]="!domEntryForm.valid"
+              value="{{btnAddOrUpdate}}">
+            <button type="button" class="btn btn-warning mr-2"
+              (click)="clearState()">{{ 'CDDENTRY.ClearButtonLabel' | translate }}</button>
+            <button *ngIf="!isNew" type="button" class="btn btn-secundary"
+              (click)="lockSwitch()">{{ lockLabel }}</button>
+          </div>
+
+          <!-- <div *ngIf="(validationMessages)">
+            <ng-container *ngFor="let validation of validationMessages.amount">
+              <div class="error-message"
+                *ngIf="domEntryForm.get('amount').hasError(validation.type) && (domEntryForm.get('amount').dirty || domEntryForm.get('amount').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validationMessages.endToEndReference">
+              <div class="error-message"
+                *ngIf="domEntryForm.get('endToEndReference').hasError(validation.type) && (domEntryForm.get('endToEndReference').dirty || domEntryForm.get('endToEndReference').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validationMessages.communication">
+              <div class="error-message"
+                *ngIf="domEntryForm.get('communication').hasError(validation.type) && (domEntryForm.get('communication').dirty || domEntryForm.get('communication').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validationMessages.mandateId">
+              <div class="error-message"
+                *ngIf="domEntryForm.get('mandateId').hasError(validation.type) && (domEntryForm.get('mandateId').dirty || domEntryForm.get('mandateId').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validationMessages.mandateStartDate">
+              <div class="error-message"
+                *ngIf="domEntryForm.get('mandateStartDate').hasError(validation.type) && (domEntryForm.get('mandateStartDate').dirty || domEntryForm.get('mandateStartDate').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validationMessages.clientName">
+              <div class="error-message"
+                *ngIf="domEntryForm.get('clientName').hasError(validation.type) && (domEntryForm.get('clientName').dirty || domEntryForm.get('clientName').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validationMessages.clientIban">
+              <div class="error-message"
+                *ngIf="domEntryForm.get('clientIban').hasError(validation.type) && (domEntryForm.get('clientIban').dirty || domEntryForm.get('clientIban').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div> -->
+
+        </form>
+      </tab>
+
+      <tab heading="{{ 'CDDENTRY.TabMaintenanceLabel' | translate }} - v{{ version }}">
+        <app-domtools></app-domtools>
+        <!-- <pre class="card card-block card-header">{{ domJson | json }}</pre> -->
+      </tab>
+    </tabset>
+  </div>
+</div>

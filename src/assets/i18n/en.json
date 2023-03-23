@@ -1,0 +1,136 @@
+{
+  "NAVBAR": {
+    "NavTitle": "Direct debits creditor",
+    "LanguageModalTitle": "Select your language:",
+    "LanguageModalCloseBtnName": "Close"
+  },
+  "COMMON": {
+    "IsRequired": "is required",
+    "InvalidEmail": "Invalid email address"
+  },
+  "CDDENTRIES": {
+    "EmptyLabel": "Add new or import entries",
+    "ExportButtonLabel": "Generate",
+    "LoadButtonLabel": "Import",
+    "SaveButtonLabel": "Export As",
+    "DeleteButtonLabel": "Delete all",
+    "DeleteThisLabel": "Do you want to delete this entry?",
+    "DeleteAllLabel": "Do you want to delete all entries?",
+    "YesLabel": "Yes",
+    "NoLabel": "No",
+    "SaveModalTitle": "Save Entries list As:",
+    "LoadModalTitle": "Load Entries list",
+    "ExportModalTitle": "Direct Debit Export XML",
+    "ModalCloseBtnName": "Close"
+  },
+  "CDDENTRY": {
+    "TabList": "Action List",
+    "AmountLabel": "Add an amount",
+    "EndToEndLabel": "End-to-end (empty or unique ref!)",
+    "CommunicationLabel": "Communication",
+    "MandateIdLabel": "Add mandate id",
+    "MandateStartDateLabel": "Add mandate startdate",
+    "ClientNameLabel": "Add client name",
+    "IbanNumberLabel": "Add iban number",
+    "SaveButtonLabel": "Save",
+    "UpdateButtonLabel": "Update",
+    "ClearButtonLabel": "Clear",
+    "LockButtonLabel": "Lock",
+    "UnLockButtonLabel": "Unlock",
+    "TabAddLabel": "Add New",
+    "TabEditLabel": "Edit Entry",
+    "TabMaintenanceLabel": "Maintenance",
+    "EndToEndRequiredMessage": "EndToEnd Message is required",
+    "AmountRequiredMessage": "Amount is required",
+    "AmountMinMaxMessage": "min 0.01 and max 5000",
+    "MandateIdRequiredMessage": "Mandate Id is required",
+    "MandateStartDateRequiredMessage": "Mandate Startdate is required",
+    "ClientNameRequiredMessage": "Client name is required",
+    "IbanRequiredMessage": "Iban number is required",
+    "IbanMinMaxMessage": "Iban number 12 or 16 characters required",
+    "CommunicationRequiredMessage": "Communication is required"
+  },
+  "CDDSAVE": {
+    "GroupTypeLabel": "Group Type",
+    "ClientLabel": "Client",
+    "ListLabel": "List",
+    "DescriptionLabel": "Description",
+    "DeleteAfterSavingCheckbox": "Delete entries after saving",
+    "SaveButtonLabel": "Save"
+  },
+  "CDDLOAD": {
+    "ChooseGroupLabel": "Choose Group",
+    "ClientsLabel": "Client",
+    "ListsLabel": "List",
+    "GeneratedXMLLabel": "Generated XML",
+    "DescriptionLabel": "Description",
+    "ReplaceEntriesCheckbox": "Remove existing entries first",
+    "DeleteAfterLoadingCheckbox": "Delete groupentries after loading",
+    "LoadButtonLabel": "Load"
+  },
+  "CDDEXPORT": {
+    "DescriptionLabel": "App Description",
+    "CreationDateLabel": "Creation date",
+    "CDDAboutLabel": "CDD About Description",
+    "MemoDateLabel": "Memo date",
+    "ClearAfterExportCheckbox": "Clear entries after generating XML",
+    "GenerateXMLButtonLabel": "Generate CDD XML",
+    "ClearButtonLabel": "Clear"
+  },
+  "CDDSETTINGS": {
+    "NameLabel": "Creditor name",
+    "EnterpriseNumberLabel": "Enterprise number",
+    "CountryCodeLabel": "Creditor country code",
+    "StreetAndNumberLabel": "Creditor street and number",
+    "PostalCodeAndCityLabel": "Creditor postal code and place",
+    "IbanLabel": "Creditor IBAN",
+    "BicLabel": "Creditor BIC",
+    "DomIdLabel": "Creditor DOM Id",
+    "SaveButtonLabel": "Save",
+    "ClearButtonLabel": "Clear",
+    "ReadButtonLabel": "Read"
+  },
+  "CDDTOOLS": {
+    "SettingsButtonLabel": "Settings",
+    "ZipStorageButtonLabel": "Zip Storage",
+    "ZipInspectButtonLabel": "Inspect ZIP",
+    "StoreButtonLabel": "Store!",
+    "ResetButtonLabel": "Reset",
+    "SettingsModalTitle": "Direct Debit Settings",
+    "ModalCloseBtnName": "Close",
+    "ZipThisLabel": "ZIP Backup all data?",
+    "InspectThisLabel": "Inspect ZIP Backup?",
+    "StoreThisLabel": "files to save in storage?",
+    "YesLabel": "Yes",
+    "NoLabel": "No",
+    "OkLabel": "Ok"
+  },
+  "selectOptionsDemo": {
+    "A10C": [
+      {
+        "value": "0",
+        "viewvalue": "0:"
+      },
+      {
+        "value": "1",
+        "viewValue": "1: French"
+      },
+      {
+        "value": "2",
+        "viewValue": "2: Dutch"
+      },
+      {
+        "value": "3",
+        "viewValue": "3: German"
+      },
+      {
+        "value": "4",
+        "viewValue": "4: English"
+      },
+      {
+        "value": "9",
+        "viewValue": "9: Other"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="domExportForm" (ngSubmit)="generateDomXml()">
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="domDescription"
+        placeholder="{{ 'CDDEXPORT.DescriptionLabel' | translate }}">
+      <input readonly type="text" class="form-control" formControlName="domDateCreated"
+        placeholder="{{ 'CDDEXPORT.CreationDateLabel' | translate }}">
+      <input type="text" class="form-control" formControlName="domInfoText"
+        placeholder="{{ 'CDDEXPORT.CDDAboutLabel' | translate }}">
+      <input class="form-control" #datepickerYMD="bsDatepicker" bsDatepicker formControlName="domMemoDate"
+        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-default' }">
+    </div>
+
+    <div class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" formControlName="clearEntriesAfterLoading"
+            value="">{{ 'CDDEXPORT.ClearAfterExportCheckbox' | translate }}
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary mr-1" value="{{ 'CDDEXPORT.GenerateXMLButtonLabel' | translate }}"
+        [disabled]="!domExportForm.valid">
+      <button type="button" class="btn btn-warning"
+        (click)="clearState()">{{ 'CDDEXPORT.ClearButtonLabel' | translate }}
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+</div>

@@ -1,0 +1,26 @@
+# TeX
+cdd-manual.pdf
+cdd-slides.pdf
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lol
+*.lot
+*.nav
+*.out
+*.snm
+*.tdo
+*.toc
+*.synctex.gz
+*.synctex(busy)
+*.vrb
+*_temp.*
+*.run.xml
+*.bcf

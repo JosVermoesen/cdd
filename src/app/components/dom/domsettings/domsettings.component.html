@@ -1,0 +1,71 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="domSettingsForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <app-text-input
+        formControlName="name"
+        label="{{ 'CDDSETTINGS.NameLabel' | translate }}"
+        warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+      ></app-text-input>
+
+      <app-text-input
+        formControlName="enterpriseNumber"
+        label="{{ 'CDDSETTINGS.EnterpriseNumberLabel' | translate }}"
+        warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+      ></app-text-input>
+
+      <app-text-input
+        formControlName="country"
+        label="{{ 'CDDSETTINGS.CountryCodeLabel' | translate }}"
+        warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+      ></app-text-input>
+
+      <app-text-input
+        formControlName="street"
+        label="{{ 'CDDSETTINGS.StreetAndNumberLabel' | translate }}"
+        warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+      ></app-text-input>
+
+      <app-text-input
+        formControlName="pcPlace"
+        label="{{ 'CDDSETTINGS.PostalCodeAndCityLabel' | translate }}"
+        warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+      ></app-text-input>
+
+      <app-text-input
+        formControlName="iban"
+        label="{{ 'CDDSETTINGS.IbanLabel' | translate }}"
+        warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+      ></app-text-input>
+
+      <app-text-input
+        formControlName="bic"
+        label="{{ 'CDDSETTINGS.BicLabel' | translate }}"
+        warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+      ></app-text-input>
+
+      <app-text-input
+        formControlName="domId"
+        label="{{ 'CDDSETTINGS.DomIdLabel' | translate }}"
+        warningMessage="{{ 'COMMON.IsRequired' | translate }}"
+      ></app-text-input>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary mr-1" value="{{ 'CDDSETTINGS.SaveButtonLabel' | translate }}"
+        [disabled]="!domSettingsForm.valid">
+      <button type="button" class="btn btn-warning mr-1"
+        (click)="clearState()">{{ 'CDDSETTINGS.ClearButtonLabel' | translate }}</button>
+      <button type="button" class="btn btn-success"
+        (click)="onRead()">{{ 'CDDSETTINGS.ReadButtonLabel' | translate }}</button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+</div>

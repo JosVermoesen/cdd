@@ -1,0 +1,49 @@
+<div *ngIf="loaded && domEntries.length === 0">
+  <pre class="card card-block card-header">{{ 'CDDENTRIES.EmptyLabel' | translate }}</pre>
+</div>
+
+<div class="form-group">
+  <ul class="list-group" *ngIf="loaded && domEntries.length > 0">
+    <li *ngFor="let entry of domEntries" [class.list-group-item-secondary]="selectedDomEntry === entry"
+      class="list-group-item d-flex justify-content-between align-items-center">
+      <a>{{ entry.clientIban }}</a>
+      <a>{{ entry.amount | currency:'EUR' }}</a>
+      <a (click)="onSelect(entry)" href="#">{{ entry.clientName }}</a>
+      <button type="button" class="close" aria-label="Close" (click)="deleteThisModal(templatedeletethis, entry)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div class="form-group">
+  <div>
+    <button type="button" class="btn btn-success mr-1" [disabled]="!domEntries.length"
+      (click)="openModalExport()">{{ 'CDDENTRIES.ExportButtonLabel' | translate }} {{ domEntries.length }}</button>
+    <button type="button" class="btn btn-warning mr-1"
+      (click)="entriesModalLoad()">{{ 'CDDENTRIES.LoadButtonLabel' | translate }}</button>
+    <button type="button" class="btn btn-primary mr-1" [disabled]="!domEntries.length"
+      (click)="entriesModalSave()">{{ 'CDDENTRIES.SaveButtonLabel' | translate }}</button>
+    <button type="button" class="btn btn-danger" [disabled]="!domEntries.length"
+      (click)="deleteAllModal(templatedeleteall)">{{ 'CDDENTRIES.DeleteButtonLabel' | translate }}</button>
+  </div>
+
+  <ng-template #templatedeletethis>
+    <div class="modal-body text-center">
+      <p>{{ 'CDDENTRIES.DeleteThisLabel' | translate }}</p>
+      <button type="button" class="btn btn-default"
+        (click)="confirmDeleteThis()">{{ 'CDDENTRIES.YesLabel' | translate }}</button>
+      <button type="button" class="btn btn-primary"
+        (click)="declineDeleteThis()">{{ 'CDDENTRIES.NoLabel' | translate }}</button>
+    </div>
+  </ng-template>
+
+  <ng-template #templatedeleteall>
+    <div class="modal-body text-center">
+      <p>{{ 'CDDENTRIES.DeleteAllLabel' | translate }}</p>
+      <button type="button" class="btn btn-default"
+        (click)="confirmDeleteAll()">{{ 'CDDENTRIES.YesLabel' | translate }}</button>
+      <button type="button" class="btn btn-primary"
+        (click)="declineDeleteAll()">{{ 'CDDENTRIES.NoLabel' | translate }}</button>
+    </div>
+  </ng-template>
