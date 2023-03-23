@@ -8,14 +8,14 @@ export class DomService {
   domEntries: DomEntry[];
 
   private domEntrieSource = new BehaviorSubject<DomEntry>({
-    id: null,
-    endToEndReference: null,
-    amount: null,
-    mandateId: null,
+    id: '',
+    endToEndReference: '',
+    amount: 0,
+    mandateId: '',
     mandateStartDate: null,
-    clientName: null,
-    clientIban: null,
-    communication: null
+    clientName: '',
+    clientIban: '',
+    communication: '',
   });
 
   selectedDomEntry = this.domEntrieSource.asObservable();
@@ -28,14 +28,15 @@ export class DomService {
   }
 
   getDomEntries(): Observable<DomEntry[]> {
-    if (localStorage.getItem('cddEntries_Template') === null) {
+    const cddEntriesTemplate = localStorage.getItem('cddEntries_Template');
+    if (!cddEntriesTemplate) {
       this.domEntries = [];
     } else {
-      this.domEntries = JSON.parse(localStorage.getItem('cddEntries_Template'));
+      this.domEntries = JSON.parse(cddEntriesTemplate);
     }
 
     return of(
-      this.domEntries.sort((a, b) => {
+      this.domEntries.sort((a: any, b: any) => {
         return (b.dummy = a.dummy);
       })
     );

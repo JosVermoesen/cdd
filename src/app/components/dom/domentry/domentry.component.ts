@@ -21,21 +21,21 @@ import { DomEntry } from '../../../models/domEntry';
   styleUrls: ['./domentry.component.css']
 })
 export class DomEntryComponent implements OnInit {
-  @ViewChild('staticTabs') staticTabs: TabsetComponent;
-  bsModalRef: BsModalRef;
+  @ViewChild('staticTabs') staticTabs!: TabsetComponent;
+  bsModalRef!: BsModalRef;
   version: string = environment.version;
 
-  warning: string;
-  domJson: DomEntry[];
+  warning!: string;
+  domJson!: DomEntry[];
 
-  domEntryForm: FormGroup;
+  domEntryForm!: FormGroup;
 
-  btnAddOrUpdate: string;
-  tabAddOrEdit: string;
+  btnAddOrUpdate!: string;
+  tabAddOrEdit!: string;
   isNew = true;
 
   readyForExport = false;
-  countEntries: number;
+  countEntries!: number;
 
   locked = false;
   lockLabel = this.ts.instant('CDDENTRY.UnLockButtonLabel');

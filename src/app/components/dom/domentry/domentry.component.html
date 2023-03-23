@@ -3,8 +3,7 @@
     <tabset #staticTabs>
       <tab heading="{{ 'CDDENTRY.TabList' | translate }}">
         <app-domentries></app-domentries>
-      </tab
-      >
+      </tab>
       <!-- <input type="button">
       <input type="checkbox">
       <input type="color">
@@ -30,62 +29,163 @@
       <tab heading="{{ tabAddOrEdit }}">
         <form [formGroup]="domEntryForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <input formControlName="id" hidden>
+            <input formControlName="id" hidden />
+            <div class="input-group mb-3">
+              <input
+                formControlName="amount"
+                type="number"
+                class="form-control"
+                placeholder="{{ 'CDDENTRY.AmountLabel' | translate }}"
+                aria-label="Amount"
+                aria-describedby="basic-addon1"
+              />
+            </div>
 
-            <app-text-input
+            <div class="input-group mb-3">
+              <input
+                formControlName="communication"
+                type="text"
+                class="form-control"
+                placeholder="{{ 'CDDENTRY.CommunicationLabel' | translate }}"
+                aria-label="Communication"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+
+            <!-- <app-text-input
               formControlName="amount"
               type="number"
               label="{{ 'CDDENTRY.AmountLabel' | translate }}"
               warningMessage="{{ 'CDDENTRY.AmountMinMaxMessage' | translate }}"
-            ></app-text-input>
+            ></app-text-input> -->
 
-            <app-text-input
+            <!-- <app-text-input
               formControlName="communication"
               label="{{ 'CDDENTRY.CommunicationLabel' | translate }}"
               warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-            ></app-text-input>
+            ></app-text-input> -->
 
             <div *ngIf="!locked">
-              <app-text-input
+              <div class="input-group mb-3">
+                <input
+                  formControlName="mandateId"
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ 'CDDENTRY.MandateIdLabel' | translate }}"
+                  aria-label="Mandate"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+
+              <input
+                class="form-control mt-1"
+                #datepickerYMD="bsDatepicker"
+                bsDatepicker
+                formControlName="mandateStartDate"
+                placeholder="{{ 'CDDENTRY.MandateStartDateLabel' | translate }}"
+                [bsConfig]="{
+                  dateInputFormat: 'YYYY-MM-DD',
+                  containerClass: 'theme-default'
+                }"
+              />
+
+              <div class="input-group mb-3">
+                <input
+                  formControlName="clientName"
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ 'CDDENTRY.ClientNameLabel' | translate }}"
+                  aria-label="ClientName"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+
+              <div class="input-group mb-3">
+                <input
+                  formControlName="clientIban"
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ 'CDDENTRY.IbanNumberLabel' | translate }}"
+                  aria-label="Iban"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+
+              <!-- <app-text-input
                 formControlName="mandateId"
                 label="{{ 'CDDENTRY.MandateIdLabel' | translate }}"
                 warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-              ></app-text-input>
+              ></app-text-input> -->
 
-              <input class="form-control mt-1" #datepickerYMD="bsDatepicker" bsDatepicker
-                formControlName="mandateStartDate" placeholder="{{ 'CDDENTRY.MandateStartDateLabel' | translate }}"
-                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', containerClass: 'theme-default' }">
-
-              <app-text-input
+              <!-- <app-text-input
                 formControlName="clientName"
                 label="{{ 'CDDENTRY.ClientNameLabel' | translate }}"
                 warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-              ></app-text-input>
+              ></app-text-input> -->
 
-              <app-text-input
+              <!-- <app-text-input
                 formControlName="clientIban"
                 label="{{ 'CDDENTRY.IbanNumberLabel' | translate }}"
                 warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-              ></app-text-input>
+              ></app-text-input> -->
             </div>
 
             <div *ngIf="locked">
-              <input readonly type="text" class="form-control mt-1" formControlName="mandateId">
-              <input readonly class="form-control mt-1" formControlName="mandateStartDate">
-              <input readonly type="text" class="form-control mt-1" formControlName="clientName">
-              <input readonly type="text" class="form-control mt-1" formControlName="clientIban">
+              <input
+                readonly
+                type="text"
+                class="form-control mt-1"
+                formControlName="mandateId"
+              />
+              <input
+                readonly
+                class="form-control mt-1"
+                formControlName="mandateStartDate"
+              />
+              <input
+                readonly
+                type="text"
+                class="form-control mt-1"
+                formControlName="clientName"
+              />
+              <input
+                readonly
+                type="text"
+                class="form-control mt-1"
+                formControlName="clientIban"
+              />
             </div>
-            <input readonly type="text" class="form-control mt-1 text-primary" formControlName="endToEndReference"
-              placeholder="{{ 'CDDENTRY.EndToEndLabel' | translate }}">
+            <input
+              readonly
+              type="text"
+              class="form-control mt-1 text-primary"
+              formControlName="endToEndReference"
+              placeholder="{{ 'CDDENTRY.EndToEndLabel' | translate }}"
+            />
           </div>
 
           <div class="form-group">
-            <input type="submit" class="btn btn-primary mr-1" [disabled]="!domEntryForm.valid"
-              value="{{btnAddOrUpdate}}">
-            <button type="button" class="btn btn-warning mr-2"
-              (click)="clearState()">{{ 'CDDENTRY.ClearButtonLabel' | translate }}</button>
-            <button *ngIf="!isNew" type="button" class="btn btn-secundary"
-              (click)="lockSwitch()">{{ lockLabel }}</button>
+            <input
+              type="submit"
+              class="btn btn-primary mr-1"
+              [disabled]="!domEntryForm.valid"
+              value="{{ btnAddOrUpdate }}"
+            />
+            <button
+              type="button"
+              class="btn btn-warning mr-2"
+              (click)="clearState()"
+            >
+              {{ "CDDENTRY.ClearButtonLabel" | translate }}
+            </button>
+            <button
+              *ngIf="!isNew"
+              type="button"
+              class="btn btn-secundary"
+              (click)="lockSwitch()"
+            >
+              {{ lockLabel }}
+            </button>
           </div>
 
           <!-- <div *ngIf="(validationMessages)">
@@ -132,11 +232,14 @@
               </div>
             </ng-container>
           </div> -->
-
         </form>
       </tab>
 
-      <tab heading="{{ 'CDDENTRY.TabMaintenanceLabel' | translate }} - v{{ version }}">
+      <tab
+        heading="{{ 'CDDENTRY.TabMaintenanceLabel' | translate }} - v{{
+          version
+        }}"
+      >
         <app-domtools></app-domtools>
         <!-- <pre class="card card-block card-header">{{ domJson | json }}</pre> -->
       </tab>

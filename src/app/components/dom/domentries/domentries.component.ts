@@ -16,16 +16,16 @@ import { DomExportComponent } from './../domexport/domexport.component';
   styleUrls: ['./domentries.component.css']
 })
 export class DomEntriesComponent implements OnInit {
-  bsModalRef: BsModalRef;
+  bsModalRef!: BsModalRef;
 
-  domEntries: DomEntry[];
-  selectedDomEntry: DomEntry;
+  domEntries!: DomEntry[];
+  selectedDomEntry!: DomEntry;
 
-  localStorageItems: string[];
-  localStorageItemValues: any[];
+  localStorageItems!: string[];
+  localStorageItemValues!: any[];
 
   loaded = false;
-  entryCount: number;
+  entryCount!: number;
 
   constructor(
     private domService: DomService,
@@ -178,8 +178,8 @@ export class DomEntriesComponent implements OnInit {
     this.localStorageItems = [];
     this.localStorageItemValues = [];
     for (let i = 0, len = localStorage.length; i < len; i++) {
-      const key = localStorage.key(i);
-      if (key.substring(0, lengthOfSearch) === domToSearch) {
+      const key = localStorage.key(i) as string;
+      if (key.substring(0, lengthOfSearch) === domToSearch ) {
         const value = localStorage[key];
         const itemDescription = key.substring(lengthOfSearch);
         this.localStorageItems.push(itemDescription);
