@@ -12,7 +12,7 @@ import { LanguageComponent } from './language/language.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  bsModalRef: BsModalRef;
+  bsModalRef!: BsModalRef;
 
   faGlobe = faGlobe;
 

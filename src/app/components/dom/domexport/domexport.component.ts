@@ -15,39 +15,39 @@ import { DomCompany } from './../../../models/domCompany';
 @Component({
   selector: 'app-domexport',
   templateUrl: './domexport.component.html',
-  styleUrls: ['./domexport.component.css']
+  styleUrls: ['./domexport.component.css'],
 })
 export class DomExportComponent implements OnInit {
-  title: string;
-  closeBtnName: string;
+  title!: string;
+  closeBtnName!: string;
 
   templateDom: any;
   templateClient: any;
   templateEachClient: any;
   templateClients = '';
 
-  domExportForm: FormGroup;
+  domExportForm!: FormGroup;
 
-  iCount: number;
-  cCount: number;
-  domCount: number;
-  position: number;
+  iCount!: number;
+  cCount!: number;
+  domCount!: number;
+  position!: number;
 
   // from json localStore
-  domData: DomCompany;
-  domEntries: DomEntry[];
+  domData!: DomCompany;
+  domEntries!: DomEntry[];
 
   // arrays of fields
-  settingFields: string[];
-  varFields: string[];
-  entryFields: string[];
+  settingFields!: string[];
+  varFields!: string[];
+  entryFields!: string[];
 
   // arrays of data
-  domSettingsData: string[];
-  domVarData: string[];
-  domEntryData: string[];
+  domSettingsData!: string[];
+  domVarData!: string[];
+  domEntryData!: string[];
 
-  public onSelected: Subject<boolean>;
+  public onSelected!: Subject<boolean>;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -60,16 +60,16 @@ export class DomExportComponent implements OnInit {
 
     this.http
       .get('../../../assets/xmltemplates/dom-drctdbttxinf.xml', {
-        responseType: 'text' as 'json'
+        responseType: 'text' as 'json',
       })
-      .subscribe(data => {
+      .subscribe((data) => {
         this.templateClient = data;
       });
     this.http
       .get('../../../assets/xmltemplates/dom-document.xml', {
-        responseType: 'text' as 'json'
+        responseType: 'text' as 'json',
       })
-      .subscribe(data => {
+      .subscribe((data) => {
         this.templateDom = data;
       });
 
@@ -81,14 +81,14 @@ export class DomExportComponent implements OnInit {
       'companyPCPlace', // 9310 HERDERSEM
       'companyIban', // BE83891854037015
       'companyBic', // VDSPBE91
-      'companyDomId' // BE02ZZZ0440058217
+      'companyDomId', // BE02ZZZ0440058217
     ];
 
     this.varFields = [
       'domDescription', // VsoftTool-3.10-all-OK
       'domDateCreated', // 2019-05-07T08:35:04
       'domInfoText', // Verzekeringen 2019 5 van 12
-      'domMemoDate' // 2019-05-09
+      'domMemoDate', // 2019-05-09
     ];
 
     this.entryFields = [
@@ -98,7 +98,7 @@ export class DomExportComponent implements OnInit {
       'mandateStartDate', // 2014-07-28
       'clientName', // VAN BELLE - BUYSSE
       'clientIban', // BE51001831288662
-      'communication' // MEI 2019 VERZ
+      'communication', // MEI 2019 VERZ
     ];
     this.clearState();
   }
@@ -110,7 +110,7 @@ export class DomExportComponent implements OnInit {
       domDateCreated: [momentDate, Validators.required],
       domInfoText: [null, Validators.required],
       domMemoDate: [null, Validators.required],
-      clearEntriesAfterLoading: [false]
+      clearEntriesAfterLoading: [false],
     });
   }
 
@@ -124,10 +124,13 @@ export class DomExportComponent implements OnInit {
         this.domExportForm.value.domDescription,
         this.domExportForm.value.domDateCreated,
         this.domExportForm.value.domInfoText,
-        this.domExportForm.value.domMemoDate
+        this.domExportForm.value.domMemoDate,
       ];
 
-      this.domData = JSON.parse(localStorage.getItem('cddSettings_Template'));
+      const templateVal = localStorage.getItem('cddSettings_Template');
+      if (templateVal) {
+        this.domData = JSON.parse(templateVal);
+      }
 
       this.domSettingsData = [
         this.domData.name,
@@ -137,10 +140,14 @@ export class DomExportComponent implements OnInit {
         this.domData.pcPlace,
         this.domData.iban,
         this.domData.bic,
-        this.domData.domId
+        this.domData.domId,
       ];
 
-      this.domEntries = JSON.parse(localStorage.getItem('cddEntries_Template'));
+      const templateVal2 = localStorage.getItem('cddEntries_Template');
+      if (templateVal2) {
+        this.domEntries = JSON.parse(templateVal2);
+      }
+
       if (this.domEntries == null) {
         this.domCount = 0;
       } else {
@@ -198,7 +205,7 @@ export class DomExportComponent implements OnInit {
           this.domEntries[this.cCount].mandateStartDate,
           this.domEntries[this.cCount].clientName,
           this.domEntries[this.cCount].clientIban,
-          this.domEntries[this.cCount].communication
+          this.domEntries[this.cCount].communication,
         ];
 
         this.iCount = 0;
@@ -225,7 +232,7 @@ export class DomExportComponent implements OnInit {
       );
 
       const blob = new Blob([this.templateDom], {
-        type: 'text/plain;charset=utf-8'
+        type: 'text/plain;charset=utf-8',
       });
       saveAs(
         blob,

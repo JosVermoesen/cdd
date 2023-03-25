@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 const LNG_KEY = 'SELECTED_LANGUAGE';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
   selected = '';
@@ -13,7 +13,9 @@ export class LanguageService {
 
   setInitialAppLanguage() {
     const language = this.translate.getBrowserLang();
-    this.translate.setDefaultLang(language);
+    if (language) {
+      this.translate.setDefaultLang(language);
+    }
 
     const val = localStorage.getItem(LNG_KEY);
     if (val) {
@@ -28,30 +30,30 @@ export class LanguageService {
         text: 'Nederlands',
         subtext: 'Vlaanderen, Brussel',
         value: 'nl',
-        img: 'assets/images/flags/nl_small.png'
+        img: 'assets/images/flags/nl_small.png',
       },
       {
         text: 'Français',
         subtext: 'La Wallonie, Bruxelles',
         value: 'fr',
-        img: 'assets/images/flags/fr_small.png'
+        img: 'assets/images/flags/fr_small.png',
       },
       {
         text: 'Deutsch',
         subtext: 'Ostbelgien',
         value: 'de',
-        img: 'assets/images/flags/de_small.png'
+        img: 'assets/images/flags/de_small.png',
       },
       {
         text: 'English',
         subtext: '',
         value: 'en',
-        img: 'assets/images/flags/en_small.png'
-      }
+        img: 'assets/images/flags/en_small.png',
+      },
     ];
   }
 
-  setLanguage(lng) {
+  setLanguage(lng: string) {
     this.translate.use(lng);
     this.selected = lng;
     localStorage.setItem(LNG_KEY, lng);

@@ -4,10 +4,9 @@ import { Subject } from 'rxjs';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
-import { IbanCheck } from '@vsoft-nx/vsoft-functions';
-
 import { DomCompany } from './../../../models/domCompany';
 import { TranslateService } from '@ngx-translate/core';
+import { IbanService } from 'src/app/services/iban.service';
 
 @Component({
   selector: 'app-domsettings',
@@ -15,13 +14,13 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./domsettings.component.css']
 })
 export class DomSettingsComponent implements OnInit {
-  title: string;
-  closeBtnName: string;
+  title!: string;
+  closeBtnName!: string;
 
-  domSettingsForm: FormGroup;
-  domSettings: DomCompany;
+  domSettingsForm!: FormGroup;
+  domSettings!: DomCompany;
 
-  public onSaved: Subject<boolean>;
+  public onSaved!: Subject<boolean>;
 
   /* nameLabel: string;
   enterpriseNumberLabel: string;
@@ -35,7 +34,8 @@ export class DomSettingsComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     private fb: FormBuilder,
-    private ts: TranslateService
+    private ts: TranslateService,
+    private iban: IbanService
   ) { }
 
   public ngOnInit(): void {
@@ -65,7 +65,8 @@ export class DomSettingsComponent implements OnInit {
     }); */
 
     this.onSaved = new Subject();
-    this.domSettings = JSON.parse(localStorage.getItem('cddSettings_Template'));
+    const settingsVal = localStorage.getItem('cddSettings_Template');
+    this.domSettings = JSON.parse(settingsVal as string);
     if (this.domSettings === null) {
       this.clearState();
     } else {
@@ -101,7 +102,8 @@ export class DomSettingsComponent implements OnInit {
   }
 
   onRead() {
-    this.domSettings = JSON.parse(localStorage.getItem('cddSettings_Template'));
+    const templateVal = localStorage.getItem('cddSettings_Template');
+    this.domSettings = JSON.parse(templateVal as string);
     this.domSettingsForm = this.fb.group({
       name: [this.domSettings.name, Validators.required],
       enterpriseNumber: [
@@ -131,7 +133,7 @@ export class DomSettingsComponent implements OnInit {
   }
 
   ibanMatchValidator(ibanToCheck: string): boolean {
-    const ibanValid = IbanCheck(ibanToCheck, true, false);
+    const ibanValid = this.iban.check(ibanToCheck, true, false);
     if (ibanValid == ibanToCheck) {
       return true;
     } else {

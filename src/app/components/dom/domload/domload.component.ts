@@ -9,21 +9,21 @@ import { DomEntry } from './../../../models/domEntry';
 @Component({
   selector: 'app-domload',
   templateUrl: './domload.component.html',
-  styleUrls: ['./domload.component.css']
+  styleUrls: ['./domload.component.css'],
 })
 export class DomLoadComponent implements OnInit {
-  title: string;
-  closeBtnName: string;
+  title!: string;
+  closeBtnName!: string;
   locationReload = false;
-  iCount: number;
+  iCount!: number;
 
-  domLoadForm: FormGroup;
-  domJson: DomEntry[];
+  domLoadForm!: FormGroup;
+  domJson!: DomEntry[];
 
-  localStorageItems = [];
-  localStorageItemValues = [];
+  localStorageItems = [] as string[];
+  localStorageItemValues = [] as string[];
 
-  public onSelected: Subject<boolean>;
+  public onSelected!: Subject<boolean>;
 
   constructor(public bsModalRef: BsModalRef, private fb: FormBuilder) {}
 
@@ -32,13 +32,13 @@ export class DomLoadComponent implements OnInit {
     this.onSelected = new Subject();
   }
 
-  onChangeGroupType(groupType) {
-    const domToSearch = groupType; // 'cddClient_';
+  onChangeGroupType(groupTypeTarget: any) {
+    const domToSearch = groupTypeTarget.value; // 'cddClient_';
     const lengthOfSearch = domToSearch.length;
     this.localStorageItems = [];
     this.localStorageItemValues = [];
     for (let i = 0, len = localStorage.length; i < len; i++) {
-      const key = localStorage.key(i);
+      const key = localStorage.key(i) as string;
       if (key.substring(0, lengthOfSearch) === domToSearch) {
         const value = localStorage[key];
         const itemDescription = key.substring(lengthOfSearch);
@@ -52,10 +52,10 @@ export class DomLoadComponent implements OnInit {
     }
     this.localStorageItems.sort();
     this.domLoadForm = this.fb.group({
-      groupType: [groupType, Validators.required],
+      groupType: [groupTypeTarget.value, Validators.required],
       name: [this.localStorageItems[0], Validators.required],
       replaceEntries: [false],
-      deleteAfterLoading: [false]
+      deleteAfterLoading: [false],
     });
   }
 
@@ -69,18 +69,24 @@ export class DomLoadComponent implements OnInit {
       if (this.domLoadForm.value.replaceEntries) {
         localStorage.removeItem('cddEntries_Template');
 
-        this.domJson = JSON.parse(localStorage.getItem(itemName));
+        const itemVal = localStorage.getItem(itemName);
+        if (itemVal) {
+          this.domJson = JSON.parse(itemVal);
+        }
         localStorage.setItem(
           'cddEntries_Template',
           JSON.stringify(this.domJson)
         );
       } else {
         if (areThereEntries) {
-          this.domJson = JSON.parse(
-            localStorage.getItem('cddEntries_Template')
-          );
+          const templateVal = localStorage.getItem('cddEntries_Template');
+          if (templateVal) {
+            this.domJson = JSON.parse(templateVal);
+          }
         }
-        const tmpJson: DomEntry[] = JSON.parse(localStorage.getItem(itemName));
+
+        const itemVal2 = localStorage.getItem(itemName);
+        const tmpJson: DomEntry[] = JSON.parse(itemVal2 as string);
 
         if (areThereEntries === null) {
           this.domJson = tmpJson;

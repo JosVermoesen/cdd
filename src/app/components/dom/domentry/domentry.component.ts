@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,15 +9,15 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 import * as moment from 'moment';
 
-import { Guid, IbanCheck} from '@vsoft-nx/vsoft-functions';
-
 import { DomService } from '../../../services/dom.service';
 import { DomEntry } from '../../../models/domEntry';
+import { Guid } from 'src/app/functions/guid';
+import { IbanService } from 'src/app/services/iban.service';
 
 @Component({
   selector: 'app-domentry',
   templateUrl: './domentry.component.html',
-  styleUrls: ['./domentry.component.css']
+  styleUrls: ['./domentry.component.css'],
 })
 export class DomEntryComponent implements OnInit {
   @ViewChild('staticTabs') staticTabs!: TabsetComponent;
@@ -38,7 +37,7 @@ export class DomEntryComponent implements OnInit {
   countEntries!: number;
 
   locked = false;
-  lockLabel = this.ts.instant('CDDENTRY.UnLockButtonLabel');
+  lockLabel = '';
 
   /* endToEndRequiredMessage: string;
   amountRequiredMessage: string;
@@ -54,17 +53,30 @@ export class DomEntryComponent implements OnInit {
   constructor(
     private domService: DomService,
     private fb: FormBuilder,
-    private ts: TranslateService
-  ) { }
+    private ts: TranslateService,
+    private iban: IbanService
+  ) {}
 
   ngOnInit() {
     // this.initErrorMessages();
-    this.domJson = JSON.parse(localStorage.getItem('cddEntries_Template'));
+    const templateVal = localStorage.getItem('cddEntries_Template');
+    if (templateVal) {
+      this.domJson = JSON.parse(templateVal);
+    }
+    this.ts.get('CDDENTRY.UnLockButtonLabel').subscribe((res: string) => {
+      this.lockLabel = res;
+    });
+
     // Subscribe to the selectedLog observable
     this.domService.selectedDomEntry.subscribe((entry: DomEntry) => {
       if (entry.id !== null) {
-        this.tabAddOrEdit = this.ts.instant('CDDENTRY.TabEditLabel');
-        this.btnAddOrUpdate = this.ts.instant('CDDENTRY.UpdateButtonLabel');
+        this.ts.get('CDDENTRY.TabEditLabel').subscribe((res: string) => {
+          this.tabAddOrEdit = res;
+        });
+        this.ts.get('CDDENTRY.UpdateButtonLabel').subscribe((res: string) => {
+          this.btnAddOrUpdate = res;
+        });
+
         this.lockSwitch();
         this.selectTab(1);
 
@@ -75,7 +87,7 @@ export class DomEntryComponent implements OnInit {
           endToEndReference: [dummyNotProvided, Validators.required], // [entry.endToEndReference, Validators.required],
           amount: [
             entry.amount,
-            [Validators.required, Validators.min(0.01), Validators.max(3000)]
+            [Validators.required, Validators.min(0.01), Validators.max(3000)],
           ],
           mandateId: [entry.mandateId, Validators.required],
           mandateStartDate: [entry.mandateStartDate, Validators.required],
@@ -85,10 +97,10 @@ export class DomEntryComponent implements OnInit {
             [
               Validators.required,
               Validators.minLength(12),
-              Validators.maxLength(16)
-            ]
+              Validators.maxLength(16),
+            ],
           ],
-          communication: [entry.communication, Validators.required]
+          communication: [entry.communication, Validators.required],
         });
         this.isNew = false;
       } else {
@@ -169,17 +181,20 @@ export class DomEntryComponent implements OnInit {
   }
 
   ibanMatchValidator(ibanToCheck: string): boolean {
-    const ibanValid = IbanCheck(ibanToCheck, true, false);
+    const ibanValid = this.iban.check(ibanToCheck, true, false);
     if (ibanValid == ibanToCheck) {
       return true;
     } else {
-      console.log('TODO: message iban invalid ')
+      console.log('TODO: message iban invalid ');
       return false;
     }
   }
 
   selectTab(tabId: number) {
-    this.staticTabs.tabs[tabId].active = true;
+    if (this.staticTabs?.tabs[tabId]) {
+      this.staticTabs.tabs[tabId].active = true;
+    }
+    /* this.staticTabs.tabs[tabId].active = true; */
   }
 
   lockSwitch() {
@@ -198,7 +213,9 @@ export class DomEntryComponent implements OnInit {
   onSubmit() {
     const dummyNotProvided = Date.now().toString(); // 'NOTPROVIDED';
 
-    const ibanIsValid = this.ibanMatchValidator(this.domEntryForm.value.clientIban);
+    const ibanIsValid = this.ibanMatchValidator(
+      this.domEntryForm.value.clientIban
+    );
     if (ibanIsValid) {
       if (this.domEntryForm.valid) {
         if (this.domEntryForm.value.endToEndReference == '') {
@@ -238,7 +255,7 @@ export class DomEntryComponent implements OnInit {
       endToEndReference: [dummyNotProvided, Validators.required],
       amount: [
         null,
-        [Validators.required, Validators.min(0.01), Validators.max(3000)]
+        [Validators.required, Validators.min(0.01), Validators.max(3000)],
       ],
       mandateId: [null, Validators.required],
       mandateStartDate: [null, Validators.required],
@@ -248,13 +265,16 @@ export class DomEntryComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(12),
-          Validators.maxLength(16)
-        ]
+          Validators.maxLength(16),
+        ],
       ],
-      communication: [null, Validators.required]
+      communication: [null, Validators.required],
     });
     this.domService.clearState();
-    this.domJson = JSON.parse(localStorage.getItem('cddEntries_Template'));
+    const templateVal = localStorage.getItem('cddEntries_Template');
+    if (templateVal) {
+      this.domJson = JSON.parse(templateVal);
+    }
     // this.refreshErrorMessages();
   }
 }

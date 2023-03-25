@@ -14,10 +14,10 @@ import { DomSettingsComponent } from '../domsettings/domsettings.component';
 @Component({
   selector: 'app-domtools',
   templateUrl: './domtools.component.html',
-  styleUrls: ['./domtools.component.css']
+  styleUrls: ['./domtools.component.css'],
 })
 export class DomToolsComponent {
-  bsModalRef: BsModalRef;
+  bsModalRef!: BsModalRef;
 
   iCount = 0;
   selectedLabel = 'cdd* json | zip';
@@ -25,35 +25,35 @@ export class DomToolsComponent {
   zipBackup = new JSZip();
   zipInspect = new JSZip();
 
-  file = null;
-  files = [];
+  file: any;
+  files = [] as any;
   fileName = 'cdd* json | zip';
-  fileNameLeft: string;
+  fileNameLeft!: string;
   fileIsZip = false;
   fileIsJson = false;
 
   contentJson = null;
 
-  fileNameArray = [];
-  fileNameLeftArray = [];
-  contentJsonArray = [];
+  fileNameArray = [] as any;
+  fileNameLeftArray = []  as any;
+  contentJsonArray = [] as any;
 
   selectedFile = 0;
 
   constructor(
     private modalService: BsModalService,
     private ts: TranslateService
-  ) { }
+  ) {}
 
   openModalSettings() {
     const lblTitle = this.ts.instant('CDDTOOLS.SettingsModalTitle');
     const lblCloseBtnName = this.ts.instant('CDDTOOLS.ModalCloseBtnName');
 
     const initialState = {
-      title: lblTitle
+      title: lblTitle,
     };
     this.bsModalRef = this.modalService.show(DomSettingsComponent, {
-      initialState
+      initialState,
     });
     this.bsModalRef.content.onSaved.subscribe(() => {
       // nothing
@@ -61,7 +61,7 @@ export class DomToolsComponent {
     this.bsModalRef.content.closeBtnName = lblCloseBtnName;
   }
 
-  fileChanged(e) {
+  fileChanged(e: any) {
     this.files = e.target.files;
     const countSelected: number = e.target.files.length;
     if (countSelected) {
@@ -121,24 +121,24 @@ export class DomToolsComponent {
     this.contentJson = null;
     this.fileIsZip = false;
     this.fileIsJson = false;
-    this.file = null;
+    this.file =   null;
     this.fileName = 'cdd* json | zip';
     this.fileNameArray = [];
   }
 
-  onChangeFileArray(value) {
-    this.selectedFile = value;
-    this.contentJson = this.contentJsonArray[value];
+  onChangeFileArray(target: any) {
+    this.selectedFile = target.value;
+    this.contentJson = this.contentJsonArray[target.value];
   }
 
-  fileRead(jsonFileName: string, jsonFileLeft) {
+  fileRead(jsonFileName: string, jsonFileLeft: any ) {
     const fr = new FileReader();
     fr.onload = () => {
       this.fileNameLeftArray.unshift(jsonFileLeft);
       this.contentJsonArray.unshift(JSON.parse('' + fr.result));
       this.fileNameArray.unshift(jsonFileName);
     };
-    fr.readAsText(this.file);
+    fr.readAsText(this.file );
   }
 
   questionYesNo(template: TemplateRef<any>) {
@@ -188,7 +188,7 @@ export class DomToolsComponent {
       const toSearch = 'cdd';
       const lengthOfSearch = toSearch.length;
       for (let i = 0, len = localStorage.length; i < len; i++) {
-        const key = localStorage.key(i);
+        const key = localStorage.key(i) as string;
         if (key.substring(0, lengthOfSearch) === toSearch) {
           const value = localStorage[key];
           this.zipBackup.file(key + '.json', value);

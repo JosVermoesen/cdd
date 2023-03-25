@@ -12,20 +12,21 @@ import { DomEntry } from './../../../models/domEntry';
   styleUrls: ['./domsave.component.css']
 })
 export class DomSaveComponent implements OnInit {
-  title: string;
-  closeBtnName: string;
+  title!: string;
+  closeBtnName!: string;
   locationReload = false;
 
-  domSaveForm: FormGroup;
-  domJson: DomEntry[];
+  domSaveForm!: FormGroup;
+  domJson!: DomEntry[];
 
-  public onSaved: Subject<boolean>;
+  public onSaved!: Subject<boolean>;
 
   constructor(public bsModalRef: BsModalRef, private fb: FormBuilder) {}
 
   public ngOnInit(): void {
     this.onSaved = new Subject();
-    this.domJson = JSON.parse(localStorage.getItem('cddEntries_Template'));
+    const entriesVal = localStorage.getItem('cddEntries_Template');
+    this.domJson = JSON.parse(entriesVal as string);
     this.domSaveForm = this.fb.group({
       groupType: [null, Validators.required],
       name: [null, Validators.required],

@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h4 class="modal-title pull-left">{{title}}</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-    <span aria-hidden="true">&times;</span>
+  <button type="button" class="btn-close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <!-- <span aria-hidden="true">&times;</span> -->
   </button>
 </div>
 
@@ -11,7 +11,7 @@
       <img [src]="lng.img" class="mr-2 img-thumbnail" alt="lng.text">
       <div class="media-body">
         <h5 class="mt-0 mb-1">{{ lng.text }}</h5>
-        {{ lng.subtext }}
+        {{ lng.text }}
       </div>
     </li>
   </ul>

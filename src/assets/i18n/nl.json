@@ -37,7 +37,7 @@
     "ClearButtonLabel": "Schoon",
     "LockButtonLabel": "Vergrendel",
     "UnLockButtonLabel": "Ontgrendel",
-    "TabAddLabel": "Nieuw Toevoegen",
+    "TabAddLabel": "Nieuw",
     "TabEditLabel": "Wijzigen",
     "TabMaintenanceLabel": "Onderhoud",
     "EndToEndRequiredMessage": "EndToEnd bericht is verplicht",

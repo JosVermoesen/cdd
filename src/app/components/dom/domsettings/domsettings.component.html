@@ -1,71 +1,119 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{title}}</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-    <span aria-hidden="true">&times;</span>
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+  <button type="button" class="btn-close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+
   </button>
 </div>
 <div class="modal-body">
   <form [formGroup]="domSettingsForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <app-text-input
+      <div class="input-group mb-1">
+        <input formControlName="name" type="text" class="form-control"
+          placeholder="{{ 'CDDSETTINGS.NameLabel' | translate }}" aria-label="Name" aria-describedby="basic-addon1" />
+      </div>
+
+      <div class="input-group mb-1">
+        <input formControlName="enterpriseNumber" type="text" class="form-control"
+          placeholder="{{ 'CDDSETTINGS.EnterpriseNumberLabel' | translate }}" aria-label="EnterpriseNumber"
+          aria-describedby="basic-addon1" />
+      </div>
+
+      <div class="input-group mb-1">
+        <input formControlName="country" type="text" class="form-control"
+          placeholder="{{ 'CDDSETTINGS.CountryCodeLabel' | translate }}" aria-label="Country"
+          aria-describedby="basic-addon1" />
+      </div>
+
+      <div class="input-group mb-1">
+        <input formControlName="street" type="text" class="form-control"
+          placeholder="{{ 'CDDSETTINGS.StreetAndNumberLabel' | translate }}" aria-label="Street"
+          aria-describedby="basic-addon1" />
+      </div>
+
+      <div class="input-group mb-1">
+        <input formControlName="pcPlace" type="text" class="form-control"
+          placeholder="{{ 'CDDSETTINGS.PostalCodeAndCityLabel' | translate }}" aria-label="PcPlace"
+          aria-describedby="basic-addon1" />
+      </div>
+
+      <div class="input-group mb-1">
+        <input formControlName="iban" type="text" class="form-control"
+          placeholder="{{ 'CDDSETTINGS.IbanLabel' | translate }}" aria-label="Iban" aria-describedby="basic-addon1" />
+      </div>
+
+      <div class="input-group mb-1">
+        <input formControlName="bic" type="text" class="form-control"
+          placeholder="{{ 'CDDSETTINGS.BicLabel' | translate }}" aria-label="Bic" aria-describedby="basic-addon1" />
+      </div>
+
+      <div class="input-group mb-1">
+        <input formControlName="domId" type="text" class="form-control"
+          placeholder="{{ 'CDDSETTINGS.DomIdLabel' | translate }}" aria-label="DomId" aria-describedby="basic-addon1" />
+      </div>
+
+      <!-- <app-text-input
         formControlName="name"
         label="{{ 'CDDSETTINGS.NameLabel' | translate }}"
         warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-      ></app-text-input>
+      ></app-text-input> -->
 
-      <app-text-input
+      <!-- <app-text-input
         formControlName="enterpriseNumber"
         label="{{ 'CDDSETTINGS.EnterpriseNumberLabel' | translate }}"
         warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-      ></app-text-input>
+      ></app-text-input> -->
 
-      <app-text-input
+      <!-- <app-text-input
         formControlName="country"
         label="{{ 'CDDSETTINGS.CountryCodeLabel' | translate }}"
         warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-      ></app-text-input>
+      ></app-text-input> -->
 
-      <app-text-input
+      <!-- <app-text-input
         formControlName="street"
         label="{{ 'CDDSETTINGS.StreetAndNumberLabel' | translate }}"
         warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-      ></app-text-input>
+      ></app-text-input> -->
 
-      <app-text-input
+      <!-- <app-text-input
         formControlName="pcPlace"
         label="{{ 'CDDSETTINGS.PostalCodeAndCityLabel' | translate }}"
         warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-      ></app-text-input>
+      ></app-text-input> -->
 
-      <app-text-input
+      <!-- <app-text-input
         formControlName="iban"
         label="{{ 'CDDSETTINGS.IbanLabel' | translate }}"
         warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-      ></app-text-input>
+      ></app-text-input> -->
 
-      <app-text-input
+      <!-- <app-text-input
         formControlName="bic"
         label="{{ 'CDDSETTINGS.BicLabel' | translate }}"
         warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-      ></app-text-input>
+      ></app-text-input> -->
 
-      <app-text-input
+      <!-- <app-text-input
         formControlName="domId"
         label="{{ 'CDDSETTINGS.DomIdLabel' | translate }}"
         warningMessage="{{ 'COMMON.IsRequired' | translate }}"
-      ></app-text-input>
+      ></app-text-input> -->
     </div>
 
     <div class="form-group">
-      <input type="submit" class="btn btn-primary mr-1" value="{{ 'CDDSETTINGS.SaveButtonLabel' | translate }}"
-        [disabled]="!domSettingsForm.valid">
-      <button type="button" class="btn btn-warning mr-1"
-        (click)="clearState()">{{ 'CDDSETTINGS.ClearButtonLabel' | translate }}</button>
-      <button type="button" class="btn btn-success"
-        (click)="onRead()">{{ 'CDDSETTINGS.ReadButtonLabel' | translate }}</button>
+      <input type="submit" class="btn btn-primary me-1" value="{{ 'CDDSETTINGS.SaveButtonLabel' | translate }}"
+        [disabled]="!domSettingsForm.valid" />
+      <button type="button" class="btn btn-warning me-1" (click)="clearState()">
+        {{ "CDDSETTINGS.ClearButtonLabel" | translate }}
+      </button>
+      <button type="button" class="btn btn-success" (click)="onRead()">
+        {{ "CDDSETTINGS.ReadButtonLabel" | translate }}
+      </button>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+    {{ closeBtnName }}
+  </button>
 </div>

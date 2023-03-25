@@ -7,8 +7,7 @@ import { LanguageService } from './services/language.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
-  constructor(private ls: LanguageService) { }
+  constructor(private ls: LanguageService) {}
 
   ngOnInit() {
     this.ls.setInitialAppLanguage();

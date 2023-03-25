@@ -4,34 +4,32 @@ import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { LanguageService } from './../../../services/language.service';
+import { Language } from 'src/app/models/language';
 
 @Component({
   selector: 'app-language',
   templateUrl: './language.component.html',
-  styleUrls: ['./language.component.css']
+  styleUrls: ['./language.component.css'],
 })
 export class LanguageComponent implements OnInit {
-  title: string;
-  closeBtnName: string;
+  title!: string;
+  closeBtnName!: string;
 
-  languages = [];
+  languages!: Language[];
   selected = '';
 
-  public onSelected: Subject<boolean>;
+  public onSelected!: Subject<boolean>;
 
-  constructor(
-    public bsModalRef: BsModalRef,
-    private languageService: LanguageService
-  ) {}
+  constructor(public bsModalRef: BsModalRef, private ls: LanguageService) {}
 
   public ngOnInit(): void {
     this.onSelected = new Subject();
-    this.languages = this.languageService.getLanguages();
-    this.selected = this.languageService.selected;
+    this.languages = this.ls.getLanguages();
+    this.selected = this.ls.selected;
   }
 
-  select(lng) {
-    this.languageService.setLanguage(lng);
+  select(lng: string) {
+    this.ls.setLanguage(lng);
     // this.saveSettings();
     // this.popoverCtrl.dismiss();
 
