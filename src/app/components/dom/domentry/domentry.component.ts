@@ -12,7 +12,8 @@ import * as moment from 'moment';
 import { DomService } from '../../../services/dom.service';
 import { DomEntry } from '../../../models/domEntry';
 import { Guid } from 'src/app/functions/guid';
-import { IbanService } from 'src/app/services/iban.service';
+
+import { IbanCheck } from 'src/app/functions/ibancheck';
 
 @Component({
   selector: 'app-domentry',
@@ -53,8 +54,7 @@ export class DomEntryComponent implements OnInit {
   constructor(
     private domService: DomService,
     private fb: FormBuilder,
-    private ts: TranslateService,
-    private iban: IbanService
+    private ts: TranslateService
   ) {}
 
   ngOnInit() {
@@ -181,7 +181,7 @@ export class DomEntryComponent implements OnInit {
   }
 
   ibanMatchValidator(ibanToCheck: string): boolean {
-    const ibanValid = this.iban.check(ibanToCheck, true, false);
+    const ibanValid = IbanCheck(ibanToCheck, true, false);
     if (ibanValid == ibanToCheck) {
       return true;
     } else {

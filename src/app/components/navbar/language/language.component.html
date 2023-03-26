@@ -7,13 +7,15 @@
 
 <div class="modal-body">
   <ul class="list-unstyled" *ngFor="let lng of languages" (click)="select(lng.value)">
-    <li class="media">
-      <img [src]="lng.img" class="mr-2 img-thumbnail" alt="lng.text">
-      <div class="media-body">
-        <h5 class="mt-0 mb-1">{{ lng.text }}</h5>
-        {{ lng.text }}
+    <div class="d-flex align-items-center">
+      <div class="flex-shrink-0">
+        <img [src]="lng.img" alt="lng.text">
       </div>
-    </li>
+      <div class="flex-grow-1 ms-3">
+        <h5 class="mt-0 mb-1">{{ lng.text }}</h5>
+        <!-- {{ lng.text }} -->
+      </div>
+    </div>
   </ul>
 </div>
 

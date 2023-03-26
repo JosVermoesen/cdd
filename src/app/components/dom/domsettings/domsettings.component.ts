@@ -6,12 +6,12 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { DomCompany } from './../../../models/domCompany';
 import { TranslateService } from '@ngx-translate/core';
-import { IbanService } from 'src/app/services/iban.service';
+import { IbanCheck } from 'src/app/functions/ibancheck';
 
 @Component({
   selector: 'app-domsettings',
   templateUrl: './domsettings.component.html',
-  styleUrls: ['./domsettings.component.css']
+  styleUrls: ['./domsettings.component.css'],
 })
 export class DomSettingsComponent implements OnInit {
   title!: string;
@@ -34,9 +34,8 @@ export class DomSettingsComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     private fb: FormBuilder,
-    private ts: TranslateService,
-    private iban: IbanService
-  ) { }
+    private ts: TranslateService
+  ) {}
 
   public ngOnInit(): void {
     /* this.ts.get('CDDSETTINGS.NameLabel').subscribe((res: string) => {
@@ -74,20 +73,22 @@ export class DomSettingsComponent implements OnInit {
         name: [this.domSettings.name, Validators.required],
         enterpriseNumber: [
           this.domSettings.enterpriseNumber,
-          Validators.required
+          Validators.required,
         ],
         country: [this.domSettings.country, Validators.required],
         street: [this.domSettings.street, Validators.required],
         pcPlace: [this.domSettings.pcPlace, Validators.required],
         iban: [this.domSettings.iban, Validators.required],
         bic: [this.domSettings.bic, Validators.required],
-        domId: [this.domSettings.domId, Validators.required]
+        domId: [this.domSettings.domId, Validators.required],
       });
     }
   }
 
   onSubmit() {
-    const ibanIsValid = this.ibanMatchValidator(this.domSettingsForm.value.iban);
+    const ibanIsValid = this.ibanMatchValidator(
+      this.domSettingsForm.value.iban
+    );
     if (ibanIsValid) {
       if (this.domSettingsForm.valid) {
         this.domSettings = this.domSettingsForm.value;
@@ -108,14 +109,14 @@ export class DomSettingsComponent implements OnInit {
       name: [this.domSettings.name, Validators.required],
       enterpriseNumber: [
         this.domSettings.enterpriseNumber,
-        Validators.required
+        Validators.required,
       ],
       country: [this.domSettings.country, Validators.required],
       street: [this.domSettings.street, Validators.required],
       pcPlace: [this.domSettings.pcPlace, Validators.required],
       iban: [this.domSettings.iban, Validators.required],
       bic: [this.domSettings.bic, Validators.required],
-      domId: [this.domSettings.domId, Validators.required]
+      domId: [this.domSettings.domId, Validators.required],
     });
   }
 
@@ -128,16 +129,16 @@ export class DomSettingsComponent implements OnInit {
       pcPlace: ['', Validators.required],
       iban: ['', Validators.required],
       bic: ['', Validators.required],
-      domId: ['', Validators.required]
+      domId: ['', Validators.required],
     });
   }
 
   ibanMatchValidator(ibanToCheck: string): boolean {
-    const ibanValid = this.iban.check(ibanToCheck, true, false);
+    const ibanValid = IbanCheck(ibanToCheck, true, false);
     if (ibanValid == ibanToCheck) {
       return true;
     } else {
-      console.log('TODO: message iban invalid ')
+      console.log('TODO: message iban invalid ');
       return false;
     }
   }
