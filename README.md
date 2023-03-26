@@ -8,25 +8,25 @@ Your data is stored as json files inside the localStorage of the browser you are
 ## Getting started for developers
 
 - [Install NodeJS](https://nodejs.org/). Hint: eventually install and use [nvm](https://medium.com/@Joachim8675309/installing-node-js-with-nvm-4dc469c977d9) for easy installing and/or switching between node versions
-- Clone this repository: `git clone https://github.com/JosVermoesen/ngb-cdd.git`.
+- Clone this repository: `git clone https://github.com/JosVermoesen/cdd.git`.
 - Run `npm install` inside the project root.
 - Run `ng serve` in a terminal from the project root.
 - Profit. :tada:
 
-## Development Tools used for this app
+## Development Tools used for this app on march 2023
 
-- [NodeJS](https://nodejs.org/)
+- [NodeJS(v18.15.0)](https://nodejs.org/)
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [Angular CLI](https://www.npmjs.com/package/@angular/cli): `npm i -g @angular/cli`
+- [Angular CLI(v15.2.0)](https://www.npmjs.com/package/@angular/cli): `npm i -g @angular/cli`
 
 ## NPM packages used for this app
 
-- [bootstrap](https://www.npmjs.com/package/bootstrap): `npm i bootstrap`
-- [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap): `npm i ngx-bootstrap@5.3.2` (or greater)
-- [file-saver](https://www.npmjs.com/package/file-saver): `npm i file-saver`
-- [@types/file-saver](https://www.npmjs.com/package/@types/file-saver): `npm i @types/file-saver`
-- [jszip](https://www.npmjs.com/package/jszip): `npm i jszip`
-- [@types/jszip](https://www.npmjs.com/package/@types/jszip): `npm i @types/jszip`
+- [bootstrap(v5.2.3)](https://www.npmjs.com/package/bootstrap): `npm i bootstrap@5.2.3`
+- [ngx-bootstrap(v10.2.0)](https://www.npmjs.com/package/ngx-bootstrap): `npm i ngx-bootstrap@10.2.0` (or greater)
+- [file-saver(v2.0.5)](https://www.npmjs.com/package/file-saver): `npm i file-saver`
+- [@types/file-saver(v2.0.5)](https://www.npmjs.com/package/@types/file-saver): `npm i @types/file-saver`
+- [jszip(v3.10.1)](https://www.npmjs.com/package/jszip): `npm i jszip`
+- [@types/jszip(v3.4.1)](https://www.npmjs.com/package/@types/jszip): `npm i @types/jszip`
 - [moment](https://www.npmjs.com/package/moment): `npm i moment`
 - [@ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core): `npm i @ngx-translate/core`
 - [@ngx-translate/http-loader](https://www.npmjs.com/package/@ngx-translate/http-loader): `npm i @ngx-translate/http-loader`
@@ -61,23 +61,25 @@ Before building, add paths for jszip in compilerOptions AND set resolveJsonModul
 
 ## warnings for file-saver
 
-In angular.json, to avoid CommonJs warnings, add __allowedCommonJsDependencies__ in the options section for __file-saver__:
+In angular.json, to avoid CommonJs warnings, add __allowedCommonJsDependencies__ in the options section for __file-saver, moment and jszip__:
 
 ```bash
-"builder": "@angular-devkit/build-angular:browser",
-          "options": {
+"builder": "@angular-devkit/build-angular:browser",          
             ...
+            "options": {
             "allowedCommonJsDependencies": [
-              "file-saver"
+              "file-saver",
+              "moment",
+              "jszip",              
             ],
             ...
 ```
 
-## Updating to latest Angular 11
+## Updating to latest Angular 15
 
-This app is on Angular 11. Before starting an update, always commit first any valid open changes
+This app is on Angular 15. Before starting an update, always commit first any valid open changes
 
-update to latest Angular 11:
-`ng update @angular/cli@11 @angular/core@11`
+update to latest Angular 15:
+`ng update @angular/cli@15 @angular/core@15`
 
 Follow the instructions eventualy to fixes and test good working app
