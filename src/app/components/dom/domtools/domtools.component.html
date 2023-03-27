@@ -9,11 +9,11 @@
         (click)="questionYesNo(templateinspectthis)">{{ 'CDDTOOLS.ZipInspectButtonLabel' | translate }}</button>
     </div>
 
-    <div class="input-group">
-      <div class="custom-file">
-        <input type="file" multiple class="custom-file-input" id="inputGroupFile04"
+    <div class="input-group py-2">
+      <div class="form-file">
+        <input type="file" multiple class="form-file-input" id="inputGroupFile04"
           aria-describedby="inputGroupFileAddon04" (change)="fileChanged($event)">
-        <label class="custom-file-label" for="inputGroupFile04">{{ selectedLabel }}</label>
+        <label class="form-file-label me-2" for="inputGroupFile04">{{ selectedLabel }}</label>
       </div>
 
       <div *ngIf="fileIsJson" class="input-group-append">
@@ -28,9 +28,9 @@
     <div *ngIf="fileNameArray.length">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect02">View</label>
+          <label class="input-group-text me-2" for="inputGroupSelect02">View</label>
         </div>
-        <select class="custom-select" (change)="onChangeFileArray($event.target)" id="inputGroupSelect02">
+        <select class="form-select" (change)="onChangeFileArray($event.target)" id="inputGroupSelect02">
           <option *ngFor="let filename of fileNameArray; let i = index" selected=[0] [value]=[i]>{{filename}}
           </option>
         </select>

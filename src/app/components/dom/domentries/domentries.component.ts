@@ -13,7 +13,7 @@ import { DomExportComponent } from './../domexport/domexport.component';
 @Component({
   selector: 'app-domentries',
   templateUrl: './domentries.component.html',
-  styleUrls: ['./domentries.component.css']
+  styleUrls: ['./domentries.component.css'],
 })
 export class DomEntriesComponent implements OnInit {
   bsModalRef!: BsModalRef;
@@ -31,10 +31,10 @@ export class DomEntriesComponent implements OnInit {
     private domService: DomService,
     private modalService: BsModalService,
     private ts: TranslateService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.domService.stateClear.subscribe(clear => {
+    this.domService.stateClear.subscribe((clear) => {
       if (clear) {
         this.selectedDomEntry = {
           id: '',
@@ -44,7 +44,7 @@ export class DomEntriesComponent implements OnInit {
           mandateStartDate: '',
           clientName: '',
           clientIban: '',
-          communication: ''
+          communication: '',
         };
       }
     });
@@ -69,10 +69,10 @@ export class DomEntriesComponent implements OnInit {
     const lblCloseBtnName = this.ts.instant('CDDENTRIES.ModalCloseBtnName');
 
     const initialState = {
-      title: lblTitle
+      title: lblTitle,
     };
     this.bsModalRef = this.modalService.show(DomSaveComponent, {
-      initialState
+      initialState,
     });
     this.bsModalRef.content.onSaved.subscribe(() => {
       this.loadEntriesData();
@@ -81,14 +81,15 @@ export class DomEntriesComponent implements OnInit {
   }
 
   entriesModalLoad() {
+    console.log('entriesModalLoad');
     const lblTitle = this.ts.instant('CDDENTRIES.LoadModalTitle');
     const lblCloseBtnName = this.ts.instant('CDDENTRIES.ModalCloseBtnName');
 
     const initialState = {
-      title: lblTitle
+      title: lblTitle,
     };
     this.bsModalRef = this.modalService.show(DomLoadComponent, {
-      initialState
+      initialState,
     });
     this.bsModalRef.content.onSelected.subscribe(() => {
       this.loadEntriesData();
@@ -97,14 +98,15 @@ export class DomEntriesComponent implements OnInit {
   }
 
   openModalExport() {
+    console.log('openModalExport');
     const lblTitle = this.ts.instant('CDDENTRIES.ExportModalTitle');
     const lblCloseBtnName = this.ts.instant('CDDENTRIES.ModalCloseBtnName');
 
     const initialState = {
-      title: lblTitle
+      title: lblTitle,
     };
     this.bsModalRef = this.modalService.show(DomExportComponent, {
-      initialState
+      initialState,
     });
     this.bsModalRef.content.onSelected.subscribe(() => {
       this.loadEntriesData();
@@ -179,7 +181,7 @@ export class DomEntriesComponent implements OnInit {
     this.localStorageItemValues = [];
     for (let i = 0, len = localStorage.length; i < len; i++) {
       const key = localStorage.key(i) as string;
-      if (key.substring(0, lengthOfSearch) === domToSearch ) {
+      if (key.substring(0, lengthOfSearch) === domToSearch) {
         const value = localStorage[key];
         const itemDescription = key.substring(lengthOfSearch);
         this.localStorageItems.push(itemDescription);

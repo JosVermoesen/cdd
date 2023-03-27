@@ -37,7 +37,7 @@ export class DomEntryComponent implements OnInit {
   readyForExport = false;
   countEntries!: number;
 
-  locked = false;
+  locked = true;
   lockLabel = '';
 
   /* endToEndRequiredMessage: string;
