@@ -7,7 +7,9 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import * as moment from 'moment';
+
+// import * as moment from 'moment';
+import { format } from 'date-fns'
 
 import { DomSettingsComponent } from '../domsettings/domsettings.component';
 
@@ -195,12 +197,15 @@ export class DomToolsComponent {
         }
       }
 
-      const momentDate = moment().format('YYYYMMDD-hhmmss');
+      // const momentDate = moment().format('YYYYMMDD-hhmmss');
+      const fnsDate = format(new Date(), 'yyyyMMdd-HHmmss');
+      // console.log(momentDate);
+      console.log(fnsDate);
       this.zipBackup
         .generateAsync({ type: 'blob' })
         // tslint:disable-next-line: only-arrow-functions
         .then(function (content: string | Blob) {
-          saveAs(content, 'cddBackup_' + momentDate + '.zip');
+          saveAs(content, 'cddBackup_' + fnsDate + '.zip');
         });
     }
     this.bsModalRef.hide();

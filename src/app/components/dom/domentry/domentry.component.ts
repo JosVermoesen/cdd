@@ -7,7 +7,8 @@ import { environment } from '../../../../environments/environment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
-import * as moment from 'moment';
+// import * as moment from 'moment';
+import { format } from 'date-fns';
 
 import { DomService } from '../../../services/dom.service';
 import { DomEntry } from '../../../models/domEntry';
@@ -222,8 +223,13 @@ export class DomEntryComponent implements OnInit {
           this.domEntryForm.value.endToEndReference = dummyNotProvided;
         }
         const mandate = this.domEntryForm.value.mandateStartDate;
-        const momentDate = moment(mandate).format('YYYY-MM-DD');
-        this.domEntryForm.value.mandateStartDate = momentDate;
+        // const momentDate = moment(mandate).format('YYYY-MM-DD');
+        const fnsDate = format(new Date(mandate), 'yyyy-MM-dd');
+        // console.log(momentDate);
+        console.log(fnsDate);
+
+        // this.domEntryForm.value.mandateStartDate = momentDate;
+        this.domEntryForm.value.mandateStartDate = fnsDate;
         const domEntry: DomEntry = Object.assign({}, this.domEntryForm.value);
         if (this.isNew) {
           this.domService.addDomEntry(domEntry);

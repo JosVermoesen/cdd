@@ -7,7 +7,9 @@ import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { saveAs } from 'file-saver';
-import * as moment from 'moment';
+
+// import * as moment from 'moment';
+import { format, formatISO } from 'date-fns';
 
 import { DomEntry } from '../../../models/domEntry';
 import { DomCompany } from './../../../models/domCompany';
@@ -104,10 +106,15 @@ export class DomExportComponent implements OnInit {
   }
 
   clearState() {
-    const momentDate = moment().format();
+    // const momentDate = moment().format();
+    const fnsDate = formatISO(new Date()); // format(new Date(), 'yyyy-MM-dd');
+    // console.log('momentDate: ' + momentDate);
+    console.log('fnDate: ' + fnsDate);
+
     this.domExportForm = this.fb.group({
       domDescription: ['CDD', Validators.required],
-      domDateCreated: [momentDate, Validators.required],
+      // domDateCreated: [momentDate, Validators.required],
+      domDateCreated: [fnsDate, Validators.required],
       domInfoText: [null, Validators.required],
       domMemoDate: [null, Validators.required],
       clearEntriesAfterLoading: [false],
@@ -116,8 +123,14 @@ export class DomExportComponent implements OnInit {
 
   generateDomXml() {
     const memoDate = this.domExportForm.value.domMemoDate;
-    const momentMemoDate = moment(memoDate).format('YYYY-MM-DD');
-    this.domExportForm.value.domMemoDate = momentMemoDate;
+    // const momentMemoDate = moment(memoDate).format('YYYY-MM-DD');
+    // const memoFnsDate = this.domExportForm.value.domMemoDate;
+    const fnsMemoDate = format(new Date(memoDate), 'yyyy-MM-dd');
+    // console.log(momentMemoDate);
+    console.log(fnsMemoDate);
+
+    // this.domExportForm.value.domMemoDate = momentMemoDate;
+    this.domExportForm.value.domMemoDate = fnsMemoDate;
 
     if (this.domExportForm.valid) {
       this.domVarData = [
@@ -242,9 +255,13 @@ export class DomExportComponent implements OnInit {
           '.xml'
       );
       // Save a log
-      const momentDate = moment().format('YYYYMMDD-hhmmss');
+      // const momentDate = moment().format('YYYYMMDD-hhmmss');
+      const fnsDate = format(new Date(), 'yyyyMMdd-HHmmss');
+      // console.log(momentDate);
+      console.log(fnsDate);
+
       localStorage.setItem(
-        'cddLogXML_' + momentDate,
+        'cddLogXML_' + fnsDate,
         JSON.stringify(this.domEntries)
       );
 
