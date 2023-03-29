@@ -2,7 +2,7 @@
 
 ## Getting started for users
 
-You can use directly via [demo](https://cdd.vsoft.be)
+You can use directly on [demo](https://cdd.vsoft.be)
 Your data is stored as json files inside the localStorage of the browser you are using. With jsZip you can zip and transfert your data to other browsers and/or other computers
 
 ## Getting started for developers
@@ -26,12 +26,11 @@ Your data is stored as json files inside the localStorage of the browser you are
 - [file-saver(v2.0.5)](https://www.npmjs.com/package/file-saver): `npm i file-saver`
 - [@types/file-saver(v2.0.5)](https://www.npmjs.com/package/@types/file-saver): `npm i @types/file-saver`
 - [jszip(v3.10.1)](https://www.npmjs.com/package/jszip): `npm i jszip`
-- [@types/jszip(v3.4.1)](https://www.npmjs.com/package/@types/jszip): `npm i @types/jszip`
 - [moment](https://www.npmjs.com/package/moment): `npm i moment`
 - [@ngx-translate/core](https://www.npmjs.com/package/@ngx-translate/core): `npm i @ngx-translate/core`
 - [@ngx-translate/http-loader](https://www.npmjs.com/package/@ngx-translate/http-loader): `npm i @ngx-translate/http-loader`
 
-- install all packages in one commandline: `npm i bootstrap ngx-bootstrap@5.3.2 file-saver @types/file-saver jszip @types/jszip moment @ngx-translate/core @ngx-translate/http-loader`
+- install all packages in one commandline: `npm i bootstrap ngx-bootstrap file-saver @types/file-saver jszip moment @ngx-translate/core @ngx-translate/http-loader`
 
 ## styles.css
 

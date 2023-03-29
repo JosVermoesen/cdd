@@ -13,8 +13,6 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 import { AppComponent } from './app.component';
 
 import { LanguageService } from './services/language.service';
@@ -62,7 +60,6 @@ export function createTranslateLoader(http: HttpClient) {
     TabsModule.forRoot(),
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
-    FontAwesomeModule,
   ],
   providers: [DomService, LanguageService, BsModalRef],
   entryComponents: [
