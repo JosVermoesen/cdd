@@ -33,7 +33,7 @@ export class DomLoadComponent implements OnInit {
   }
 
   onChangeGroupType(groupTypeTarget: any) {
-    const domToSearch = groupTypeTarget.value || 'cddClient_';    
+    const domToSearch = groupTypeTarget.value || 'choose';    
     const lengthOfSearch = domToSearch.length;
     this.localStorageItems = [];
     this.localStorageItemValues = [];

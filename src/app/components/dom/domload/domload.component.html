@@ -14,15 +14,17 @@
           <label class="input-group-text me-2" for="select01">{{ 'CDDLOAD.ChooseGroupLabel' | translate }}</label>
         </div>
         <select (change)="onChangeGroupType($event.target)" class="form-select" id="select01">
-          <option [selected] value="cddClient_" selected>{{ 'CDDLOAD.ClientsLabel' | translate }}</option>
+          <option [selected] value="choose" selected>{{ 'CDDLOAD.ChooseGroupLabel' | translate }}</option>
+          <option value="cddClient_">{{ 'CDDLOAD.ClientsLabel' | translate }}</option>
           <option value="cddList_">{{ 'CDDLOAD.ListsLabel' | translate }}</option>
           <option value="cddLogXML_">{{ 'CDDLOAD.GeneratedXMLLabel' | translate }}</option>
         </select>
       </div>
-      
+
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <label class="input-group-text me-2" for="inputGroupSelect02">{{ 'CDDLOAD.DescriptionLabel' | translate }}</label>
+          <label class="input-group-text me-2" for="inputGroupSelect02">{{ 'CDDLOAD.DescriptionLabel' | translate
+            }}</label>
         </div>
         <select class="form-select" id="inputGroupSelect02" formControlName="name">
           <option *ngFor="let name of localStorageItems" [value]="name">{{name}}
