@@ -88,7 +88,7 @@ export class DomEntryComponent implements OnInit {
           endToEndReference: [dummyNotProvided, Validators.required], // [entry.endToEndReference, Validators.required],
           amount: [
             entry.amount,
-            [Validators.required, Validators.min(0.01), Validators.max(3000)],
+            [Validators.required, Validators.min(0.01), Validators.max(3800)],
           ],
           mandateId: [entry.mandateId, Validators.required],
           mandateStartDate: [entry.mandateStartDate, Validators.required],
@@ -108,6 +108,16 @@ export class DomEntryComponent implements OnInit {
         this.clearState();
       }
     });
+  }
+
+  ibanMatchValidator(ibanToCheck: string): boolean {
+    const ibanValid = IbanCheck(ibanToCheck, true, false);
+    if (ibanValid == ibanToCheck) {
+      return true;
+    } else {
+      console.log('TODO: message iban invalid ');
+      return false;
+    }
   }
 
   initErrorMessages() {
@@ -179,16 +189,6 @@ export class DomEntryComponent implements OnInit {
         { type: 'required', message: this.communicationRequiredMessage }
       ]
     }; */
-  }
-
-  ibanMatchValidator(ibanToCheck: string): boolean {
-    const ibanValid = IbanCheck(ibanToCheck, true, false);
-    if (ibanValid == ibanToCheck) {
-      return true;
-    } else {
-      console.log('TODO: message iban invalid ');
-      return false;
-    }
   }
 
   selectTab(tabId: number) {
