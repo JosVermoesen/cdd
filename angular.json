@@ -30,6 +30,14 @@
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -53,8 +61,8 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
-        },
+          "defaultConfiguration": "production"          
+        },        
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
